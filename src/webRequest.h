@@ -68,20 +68,14 @@ void http_get(char *url, struct memory_struct *mem){
     curl_global_cleanup();
 }
 
-void request(char *URL){
-
-    if (URL != NULL){
-      url = URL;
-    }else{
-      printf("no url supplied.\n");
-    }
+void request(char *url){
 
     printf("trying to make http request to: %s\n", url);
     struct memory_struct m;
     http_get(url, &m);
 
     FILE *fptr;
-    fptr = fopen("request.txt", "w");
+    fptr = fopen("request.json", "w");
    
     fprintf(fptr, m.buffer);
     printf("File written.\n"); 

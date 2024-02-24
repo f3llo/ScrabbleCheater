@@ -7,3 +7,5 @@ bin/output: src/main.c
 
 clean:
 	rm -rf /bin
+
+#add automatic addition to /bin as well as cleaning this
