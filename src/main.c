@@ -28,17 +28,29 @@ int main(int argc, char *argv[])
   char base[] = "https://api.dictionaryapi.dev/api/v2/entries/en/";
   char url[100];
 
-  strcpy(url, strcat(base, argv[1]));
+  if (argc == 2)
+  {
+    strcpy(url, strcat(base, argv[1]));    
+  }
+  else if (argc > 2)
+  {
+    printf("\033[33mToo many arguments supplied!\n");
+  }
+  else 
+  {
+    printf("\033[33mAt least one argument expected.\n");
+  }
 
   request(url);
 
   if (checkExistance() == false)
   {
-    printf("Word does not exist.\n");
+    printf("\033[31mWord does not exist.\n");
   } else 
   {
-    printf("Word exists.\n");
+    printf("\033[32mWord exists.\n");
   }
- 
+  
+  printf("\033[0m");
   return 0;
 }
