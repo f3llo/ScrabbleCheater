@@ -68,16 +68,21 @@ void http_get(char *url, struct memory_struct *mem){
     curl_global_cleanup();
 }
 
-void request(char *url){
+char* request(char *url){
 
     printf("trying to make http request to: %s\n", url);
     struct memory_struct m;
     http_get(url, &m);
 
-    FILE *fptr;
-    fptr = fopen("request.json", "w");
-   
-    fprintf(fptr, m.buffer);
+    char *result = malloc(sizeof(m.buffer));
+    
     printf("File written.\n"); 
-    fclose(fptr); 
+    
+    
+    size_t sizeOfBuffer = sizeof(m.buffer);
+
+    memcpy(result, m.buffer, sizeOfBuffer);
+
+    return result;
+  
 }
